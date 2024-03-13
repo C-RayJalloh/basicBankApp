@@ -53,16 +53,43 @@ const rootReducer = combineReducers({
 // create the store 
 const store = createStore(rootReducer);
 
-// dispatching the reducer Actions
-store.dispatch({ type: "account/Deposit", payload: 500 });
-// logging the current STATE
-console.log(store.getState());
-store.dispatch({ type: "account/Withdraw", payload: 200 });
-console.log(store.getState());
+// // dispatching the reducer Actions
+// store.dispatch({ type: "account/Deposit", payload: 500 });
+// // logging the current STATE
+// console.log(store.getState());
+// store.dispatch({ type: "account/Withdraw", payload: 200 });
+// console.log(store.getState());
 
-// Redux Action Creator
-
-
+// Redux Action Creator 
+function deposit(amount) {
+    return { type: "account/Deposit", payload: amount };
+  }
+  
+  function withdraw(amount) {
+    return { type: "account/Withdraw", payload: amount };
+  }
+  
+  function requestLoan(amount, purpose) {
+    return {
+      type: "account/RequestLoan",
+      payload: { amount, purpose },
+    };
+  }
+  
+  function payLoan() {
+    return { type: "account/PayLoan" };
+  }
+  
+  // HERE TO DISPATCH WE TAKE THE ACTION CREATOR AND USE IT AS AN ARGUMENT
+  store.dispatch(deposit(500));
+  console.log(store.getState());
+  store.dispatch(withdraw(200));
+  console.log(store.getState());
+  
+  store.dispatch(requestLoan(1000, "Buy a cheap car"));
+  console.log(store.getState());
+  store.dispatch(payLoan());
+  console.log(store.getState());
 
 
 export default store;
