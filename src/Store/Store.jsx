@@ -60,6 +60,7 @@ console.log(store.getState());
 store.dispatch({ type: "account/Withdraw", payload: 200 });
 console.log(store.getState());
 
+// Redux Action Creator
 
 
 
