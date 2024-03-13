@@ -3,7 +3,7 @@
 import { createStore, combineReducers} from "redux";
 
 
-// initial State
+// initial State object
 const initalState = {
     balance: 0,
     loan: 0,
@@ -11,10 +11,10 @@ const initalState = {
 }
 
 
-// Account Operations Reducer
+// Account Operations Reducer function
 function accountReducer(state = initalState, action){
      switch (action.type) {
-       case "account/Deposite":
+       case "account/Deposit":
          return { ...state, balance: state.balance + action.payload };
 
        case "account/Withdraw":
@@ -50,5 +50,18 @@ const rootReducer = combineReducers({
   });
 
 
-// create the store - statemanagement STORE
-const Store = createStore(rootReducer)
+// create the store 
+const store = createStore(rootReducer);
+
+// dispatching the reducer Actions
+store.dispatch({ type: "account/Deposit", payload: 500 });
+// logging the current STATE
+console.log(store.getState());
+store.dispatch({ type: "account/Withdraw", payload: 200 });
+console.log(store.getState());
+
+
+
+
+
+export default store;
