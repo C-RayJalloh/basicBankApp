@@ -43,10 +43,33 @@ function accountReducer(state = initalState, action){
 
 }
 
+// CUSTOMER INITIAL STATE
+const  customerinitialState = {
+  fullName: "",
+  nationalID: "",
+  createdAt: ""
+}
+
+
+// CUSTOMER REDUCER FUNCTION
+function customerReducer( state = customerinitialState, action) {
+  switch (action.type) {
+    case "customer/fullName":
+      return { ...state, fullName: action.payload, createdAt: new Date().toISOString() };
+
+    case "customer/nationalID":
+      return { ...state, nationalID: action.payload };
+
+    default:
+      return state;
+  }
+}
+
+
 // Redux Reducer Selector - with the combine Reducers hook
 const rootReducer = combineReducers({
     account: accountReducer,
-    // customer: customerReducer,
+    customer: customerReducer,
   });
 
 
@@ -60,7 +83,7 @@ const store = createStore(rootReducer);
 // store.dispatch({ type: "account/Withdraw", payload: 200 });
 // console.log(store.getState());
 
-// Redux Action Creator 
+// Redux Action Creators 
 function deposit(amount) {
     return { type: "account/Deposit", payload: amount };
   }
@@ -79,6 +102,17 @@ function deposit(amount) {
   function payLoan() {
     return { type: "account/PayLoan" };
   }
+
+
+// CUSTOMER REDUX AACTION CREATORS
+function setName(fullName, createdAt) {
+  return {type: "customer/fullName", payload: {fullName, createdAt}};
+
+}
+
+function setNationalID(nationalID){
+  return { type: "customer/nationalID", payload: nationalID}
+}
   
   // HERE TO DISPATCH WE TAKE THE ACTION CREATOR AND USE IT AS AN ARGUMENT
   store.dispatch(deposit(500));
@@ -91,5 +125,16 @@ function deposit(amount) {
   store.dispatch(payLoan());
   console.log(store.getState());
 
+  store.dispatch(setName( 'Ray Jahrulo', new Date()));
+  console.log(store.getState());
+  store.dispatch(setNationalID(904834839))
+console.log(store.getState())
+
+
+// USING THE DISPATCH METHOD WITHOUT CREATORS
+store.dispatch({type: "customer/fullName", payload: "JAHRULO RAY"})
+console.log(store.getState())
+store.dispatch({type: "customer/nationalID", payload: 930209483})
+console.log(store.getState())
 
 export default store;
