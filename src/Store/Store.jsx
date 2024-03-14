@@ -1,10 +1,12 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-refresh/only-export-components */
 // Redux State Management
 
 import { createStore, combineReducers} from "redux";
 
 
 // initial State object
-const initalState = {
+const AccountinitalState = {
     balance: 0,
     loan: 0,
     loanPurpose: ""
@@ -12,7 +14,7 @@ const initalState = {
 
 
 // Account Operations Reducer function
-function accountReducer(state = initalState, action){
+function accountReducer(state = AccountinitalState, action){
      switch (action.type) {
        case "account/Deposit":
          return { ...state, balance: state.balance + action.payload };
@@ -54,11 +56,12 @@ const  customerinitialState = {
 // CUSTOMER REDUCER FUNCTION
 function customerReducer( state = customerinitialState, action) {
   switch (action.type) {
-    case "customer/fullName":
-      return { ...state, fullName: action.payload, createdAt: new Date().toISOString() };
+    case "customer/createCustomer":
+      return { ...state, fullName: action.payload, 
+        nationalID: action.payload, createdAt: action.payload };
 
-    case "customer/nationalID":
-      return { ...state, nationalID: action.payload };
+    case "customer/updateCustomerInfo":
+      return { ...state, fullName: action.payload };
 
     default:
       return state;
@@ -105,13 +108,13 @@ function deposit(amount) {
 
 
 // CUSTOMER REDUX AACTION CREATORS
-function setName(fullName, createdAt) {
-  return {type: "customer/fullName", payload: {fullName, createdAt}};
+function createCustomer(fullName, nationalID) {
+  return {type: "customer/createCustomer", payload: {fullName, nationalID, createdAt: new Date().toDateString()}};
 
 }
 
-function setNationalID(nationalID){
-  return { type: "customer/nationalID", payload: nationalID}
+function updateCustomerInfo(fullName){
+  return { type: "customer/updateCustomerInfo", payload: fullName}
 }
   
   // HERE TO DISPATCH WE TAKE THE ACTION CREATOR AND USE IT AS AN ARGUMENT
@@ -125,16 +128,13 @@ function setNationalID(nationalID){
   store.dispatch(payLoan());
   console.log(store.getState());
 
-  store.dispatch(setName( 'Ray Jahrulo', new Date()));
+  // DISPATCHING WITH ACTION CREATORS
+  store.dispatch(createCustomer("ray jahrulo", "08397823"))
   console.log(store.getState());
-  store.dispatch(setNationalID(904834839))
-console.log(store.getState())
 
 
 // USING THE DISPATCH METHOD WITHOUT CREATORS
-store.dispatch({type: "customer/fullName", payload: "JAHRULO RAY"})
-console.log(store.getState())
-store.dispatch({type: "customer/nationalID", payload: 930209483})
-console.log(store.getState())
+
 
 export default store;
+
