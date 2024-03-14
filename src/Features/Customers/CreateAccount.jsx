@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import {createCustomer} from "./slices/CustomerSlice"
@@ -13,6 +14,7 @@ const dispatch = useDispatch();
       // dispatching actions to the redux store with the useDispatch() hook
       if(!fullName || !nationalId) return;
       dispatch(createCustomer(fullName, nationalId));
+      
   }
   
   return (
@@ -33,7 +35,7 @@ const dispatch = useDispatch();
             onChange={(e) => setNationalId(e.target.value)}
           />
         </div>
-        <button onClick={handleClick}>Create new customer</button>
+        <button onClick={handleClick} >Create new customer</button>
       </div>
     </div>
   );
