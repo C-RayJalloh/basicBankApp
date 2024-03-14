@@ -45,28 +45,6 @@ function accountReducer(state = AccountinitalState, action){
 
 }
 
-// CUSTOMER INITIAL STATE
-const  customerinitialState = {
-  fullName: "",
-  nationalID: "",
-  createdAt: ""
-}
-
-
-// CUSTOMER REDUCER FUNCTION
-function customerReducer( state = customerinitialState, action) {
-  switch (action.type) {
-    case "customer/createCustomer":
-      return { ...state, fullName: action.payload, 
-        nationalID: action.payload, createdAt: action.payload };
-
-    case "customer/updateCustomerInfo":
-      return { ...state, fullName: action.payload };
-
-    default:
-      return state;
-  }
-}
 
 
 // Redux Reducer Selector - with the combine Reducers hook
@@ -107,15 +85,7 @@ function deposit(amount) {
   }
 
 
-// CUSTOMER REDUX AACTION CREATORS
-function createCustomer(fullName, nationalID) {
-  return {type: "customer/createCustomer", payload: {fullName, nationalID, createdAt: new Date().toDateString()}};
 
-}
-
-function updateCustomerInfo(fullName){
-  return { type: "customer/updateCustomerInfo", payload: fullName}
-}
   
   // HERE TO DISPATCH WE TAKE THE ACTION CREATOR AND USE IT AS AN ARGUMENT
   store.dispatch(deposit(500));
