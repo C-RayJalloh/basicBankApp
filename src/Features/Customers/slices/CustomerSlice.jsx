@@ -1,7 +1,7 @@
 // CUSTOMER INITIAL STATE
 const  customerinitialState = {
     fullName: "",
-    nationalID: "",
+    nationalId: "",
     createdAt: ""
   }
   
@@ -11,7 +11,7 @@ const  customerinitialState = {
     switch (action.type) {
       case "customer/createCustomer":
         return { ...state, fullName: action.payload, 
-          nationalID: action.payload, createdAt: action.payload };
+          nationalId: action.payload, createdAt: action.payload };
   
       case "customer/updateCustomerInfo":
         return { ...state, fullName: action.payload };
@@ -23,8 +23,8 @@ const  customerinitialState = {
 
   
   // CUSTOMER REDUX AACTION CREATORS
-export function createCustomer(fullName, nationalID) {
-    return {type: "customer/createCustomer", payload: {fullName, nationalID, createdAt: new Date().toDateString()}};
+export function createCustomer(fullName, nationalId) {
+    return {type: "customer/createCustomer", payload: {fullName, nationalId, createdAt: new Date().toDateString()}};
   
   }
   
