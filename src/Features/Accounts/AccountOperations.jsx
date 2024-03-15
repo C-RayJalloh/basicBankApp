@@ -47,7 +47,7 @@ const { loan: currentLoan, loanPurpose: currentLoanPurpose, balance } = useSelec
           <input
             type="number"
             value={depositAmount}
-            onChange={(e) => setDepositAmount(+e.target.value)}
+            onChange={(e) => setDepositAmount(e.target.value)}
           />
           <select
             value={currency}
@@ -58,7 +58,7 @@ const { loan: currentLoan, loanPurpose: currentLoanPurpose, balance } = useSelec
             <option value="GBP">British Pound</option>
           </select>
 
-          <button onClick={handleDeposit}>Deposit {depositAmount}</button>
+          <button onClick={handleDeposit}>Deposit </button>
         </div>
 
         <div>
@@ -66,7 +66,7 @@ const { loan: currentLoan, loanPurpose: currentLoanPurpose, balance } = useSelec
           <input
             type="number"
             value={withdrawalAmount}
-            onChange={(e) => setWithdrawalAmount(+e.target.value)}
+            onChange={(e) => setWithdrawalAmount(e.target.value)}
           />
           <button onClick={handleWithdrawal}>
             Withdraw {withdrawalAmount}
@@ -78,7 +78,7 @@ const { loan: currentLoan, loanPurpose: currentLoanPurpose, balance } = useSelec
           <input
             type="number"
             value={loanAmount}
-            onChange={(e) => setLoanAmount(+e.target.value)}
+            onChange={(e) => setLoanAmount(e.target.value)}
             placeholder="Loan amount"
           />
           <input
