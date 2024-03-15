@@ -17,6 +17,7 @@ const { loan: currentLoan, loanPurpose: currentLoanPurpose, balance } = useSelec
     if(!depositAmount) return;
     dispatch(deposit(depositAmount, currency));
     setDepositAmount("")
+    setCurrency("USD");
 
   }
 
@@ -94,7 +95,7 @@ const { loan: currentLoan, loanPurpose: currentLoanPurpose, balance } = useSelec
             <span>
               Pay back ${currentLoan} ({currentLoanPurpose})
             </span>
-            <button onClick={handlePayLoan}>Pay loan</button>
+            <button onClick={handlePayLoan}>Pay</button>
           </div>
         )}
       </div>
