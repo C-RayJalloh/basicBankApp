@@ -46,25 +46,22 @@ export default function accountReducer(state = AccountinitalState, action){
 
 // Redux Account Action Creators 
 export function deposit(amount, currency) {
-    if(currency === "USD") return { type: "account/Deposit", payload: amount };
+  if (currency === "USD") return { type: "account/Deposit", payload: amount };
 
-    // API CONVERTER CALL 
-    return async function (dispatch, currency) {
-      const res = await fetch(`https://api.frankfurter.app/latest?amount=${amount}&from=GBP&to=USD`);
+  // API CONVERTER CALL
+  return async function (dispatch, getState) {
+    const res = await fetch(
+      `https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`
+    );
 
-
-      const data = res.json();
-      console.log(data)
-    
-    }
-
-
- 
-    
+    const data = await res.json();
+    console.log(data);
+    const converted = data.rates.USD;
 
     // DISPATCH THE MIDDLEWARE FUNCTION
-
-  }
+    dispatch({ type: "account/Deposit", payload: converted });
+  };
+}
   
   export function withdraw(amount) {
     return { type: "account/Withdraw", payload: amount };
