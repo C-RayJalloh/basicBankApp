@@ -2,25 +2,22 @@
 /* eslint-disable react-refresh/only-export-components */
 // Redux State Management
 
-import { createStore, combineReducers, applyMiddleware} from "redux";
-import { thunk } from "redux-thunk";
+// REDUX TOOLKIT
+
 import accountReducer from "../Features/Accounts/slices/AccountSlice";
 import customerReducer from "../Features/Customers/slices/CustomerSlice";
-import { composeWithDevTools } from "@redux-devtools/extension";
+import { configureStore } from "@reduxjs/toolkit";
 
 
 
-// Redux Reducer Selector - with the combine Reducers hook
-const rootReducer = combineReducers({
+
+// create the store & call configureStore and pass the reducers
+const store = configureStore({
+  reducer : {
     account: accountReducer,
     customer: customerReducer,
-  });
-
-
-// create the store & apply the middleware from thunk
-const store = createStore(rootReducer,
-  composeWithDevTools(
-    applyMiddleware(thunk)));
+  }
+})
     
     
 
