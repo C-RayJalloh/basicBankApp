@@ -2,7 +2,8 @@
 /* eslint-disable react-refresh/only-export-components */
 // Redux State Management
 
-import { createStore, combineReducers} from "redux";
+import { createStore, combineReducers, applyMiddleware} from "redux";
+import { thunk } from "redux-thunk";
 import accountReducer from "../Features/Accounts/slices/AccountSlice";
 import customerReducer from "../Features/Customers/slices/CustomerSlice";
 
@@ -15,8 +16,8 @@ const rootReducer = combineReducers({
   });
 
 
-// create the store 
-const store = createStore(rootReducer);
+// create the store & apply the middleware from thunk
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 
 export default store;
