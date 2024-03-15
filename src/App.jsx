@@ -21,7 +21,7 @@ const fullName = useSelector((store) => store.customer.fullName)
         <AccountBalance />
         </>
       )
-    };
+    }
     </div>
   );
 }
