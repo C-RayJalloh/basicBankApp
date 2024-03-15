@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
 
 
@@ -44,8 +45,25 @@ export default function accountReducer(state = AccountinitalState, action){
 
 
 // Redux Account Action Creators 
-export function deposit(amount) {
-    return { type: "account/Deposit", payload: amount };
+export function deposit(amount, currency) {
+    if(currency === "USD") return { type: "account/Deposit", payload: amount };
+
+    // API CONVERTER CALL 
+    return async function (dispatch, currency) {
+      const res = await fetch(`https://api.frankfurter.app/latest?amount=${amount}&from=GBP&to=USD`);
+
+
+      const data = res.json();
+      console.log(data)
+    
+    }
+
+
+ 
+    
+
+    // DISPATCH THE MIDDLEWARE FUNCTION
+
   }
   
   export function withdraw(amount) {
