@@ -4,7 +4,7 @@
 
 // initial State object
 const AccountinitalState = {
-    balance: '',
+    balance: 0,
     loan: 0,
     loanPurpose: ""
 }
